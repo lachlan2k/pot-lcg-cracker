@@ -35,9 +35,6 @@ func (l *lcg) NextIntPow2(bound int64) int32 {
 	return int32((bound * (l.seed >> 17)) >> 31)
 }
 
-const maxUint31 = (1 << 31) - 1
-const maxUint17 = (1 << 17) - 1
-
 const maxInt31 = (1 << 36) - 1
 const maxInt17 = (1 << 16) - 1
 
