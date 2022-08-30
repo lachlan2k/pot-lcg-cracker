@@ -35,11 +35,8 @@ func (l *lcg) NextIntPow2(bound int64) int32 {
 	return int32((bound * (l.seed >> 17)) >> 31)
 }
 
-const maxInt31 = (1 << 36) - 1
-const maxInt17 = (1 << 16) - 1
-
-const minInt31 = -(1 << 30)
-const minInt17 = -(1 << 16)
+const maxUint31 = (1 << 31) - 1
+const maxUint17 = (1 << 17) - 1
 
 func CrackIt(bound int64, samples []int32, numToGen int, continueOnMatch bool) {
 	firstSample := samples[0]
@@ -49,11 +46,11 @@ func CrackIt(bound int64, samples []int32, numToGen int, continueOnMatch bool) {
 
 	// Only the 31 left-most bits of the internal state are used to generate an output.
 	// So, we can find these bits through brute-force quite easily
-	for firstBits := int64(minInt31); firstBits <= maxInt31; firstBits++ {
+	for firstBits := int64(0); firstBits <= maxUint31; firstBits++ {
 		if int32((bound*int64(firstBits))>>31) == firstSample {
 			// We have a candidate for the 31 left-most bits
 			// Try and find the final 17 bits that generate a valid state for the rest of our samples
-			for i := int64(minInt17); i <= maxInt17; i++ {
+			for i := int64(0); i <= maxUint17; i++ {
 				stateGuess := firstBits<<17 + i
 				l.SetInternalSeed(stateGuess)
 				success := true
