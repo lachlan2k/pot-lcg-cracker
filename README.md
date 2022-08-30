@@ -68,7 +68,7 @@ $8 ==> 49749
 # How does it work?
 
 `java.util.Random` is not cryptographically secure, nor does it claim to be. There are a range of tools across the internet that allow you to predict future outputs, given a few input samples.
-However, `java.util.Random` has a special case for when `bound` is a power of two that most of these tools don't cover. My tools is designed specifically for this.
+However, `java.util.Random` has a special case for when `bound` is a power of two that most of these tools don't cover. My tool is designed specifically for this.
 
 ## Why it sucks
 
